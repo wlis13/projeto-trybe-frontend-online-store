@@ -31,9 +31,9 @@ class Categories extends React.Component {
               text={ category.name }
               name="selectedCategory"
               type="radio"
-              value={ category.name }
+              value={ category.id }
               onChange={ onChange }
-              checked={ selectedCategory === category.name }
+              checked={ selectedCategory === category.id }
             />
           ))
         }

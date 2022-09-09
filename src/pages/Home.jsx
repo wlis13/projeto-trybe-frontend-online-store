@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Categories from '../components/Categories';
 import Product from '../components/Product';
-import { getProductById } from '../services/api';
+import { getProductById, getProductsFromCategoryAndQuery } from '../services/api';
 
 class Home extends React.Component {
   state = {
@@ -26,12 +26,28 @@ class Home extends React.Component {
     this.setState({ searchResult: search.results });
   };
 
+  handleChangeCategory = async ({ target }) => {
+    const { name, value } = target;
+
+    this.setState({
+      [name]: value,
+    }, async () => {
+      const { selectedCategory } = this.state;
+
+      const { results } = await getProductsFromCategoryAndQuery(selectedCategory);
+
+      this.setState({
+        searchResult: results,
+      });
+    });
+  };
+
   render() {
     const { selectedCategory, searchResult, searchContent } = this.state;
     return (
       <div>
         <Categories
-          onChange={ this.handleChange }
+          onChange={ this.handleChangeCategory }
           selectedCategory={ selectedCategory }
         />
 
