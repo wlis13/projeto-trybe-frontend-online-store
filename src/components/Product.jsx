@@ -6,8 +6,8 @@ export default class Product extends Component {
     const { name, price, image } = this.props;
     return (
       <div data-testid="product">
-        <p value={ name } />
-        <p value={ price } />
+        <p>{ name }</p>
+        <p>{ price }</p>
         <img src={ image } alt={ name } />
       </div>
     );
@@ -16,6 +16,6 @@ export default class Product extends Component {
 
 Product.propTypes = {
   name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
 };
