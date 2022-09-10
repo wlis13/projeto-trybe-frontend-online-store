@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import RenderCard from './RenderCard';
 
-export default class CardProducts extends Component {
+export default class CartProducts extends Component {
   render() {
     return (
       <div>
-        <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+        <RenderCard />
       </div>
     );
   }
