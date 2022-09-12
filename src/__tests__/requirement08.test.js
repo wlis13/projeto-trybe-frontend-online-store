@@ -1,3 +1,7 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/order */
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
@@ -13,7 +17,7 @@ describe('8 - Adicione produtos a partir da tela de listagem de produtos', () =>
 
     userEvent.click((await screen.findAllByTestId('category'))[0]);
     expect(global.fetch).toHaveBeenCalledTimes(2);
-    
+
     userEvent.click((await screen.findAllByTestId('product-add-to-cart'))[0]);
     userEvent.click((await screen.findByTestId('shopping-cart-button')));
 

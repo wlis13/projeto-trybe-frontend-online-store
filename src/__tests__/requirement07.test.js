@@ -1,3 +1,10 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable comma-dangle */
+/* eslint-disable semi */
+/* eslint-disable max-len */
+/* eslint-disable quotes */
+/* eslint-disable import/order */
 import React from 'react';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
