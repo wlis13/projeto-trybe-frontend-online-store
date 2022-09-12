@@ -4,16 +4,12 @@ import { Link } from 'react-router-dom';
 
 export default class Product extends Component {
   setProductsStorage = () => {
-    const favorites = JSON.parse(localStorage.getItem('products')) || [];
+    const products = JSON.parse(localStorage.getItem('products')) || [];
     const { name, price, image } = this.props;
-    const objectProduct = {
-      nomes: name,
-      presos: price,
-      imagens: image,
-    };
-    const array = objectProduct;
-    favorites.push(array);
-    localStorage.setItem('products', JSON.stringify(favorites));
+    const objectProduct = { name, price, image, quantity: 1 };
+
+    localStorage
+      .setItem('products', JSON.stringify([...products, objectProduct]));
   };
 
   handleClick = () => {
@@ -39,7 +35,8 @@ export default class Product extends Component {
           type="button"
           onClick={ this.setProductsStorage }
         >
-          Comprar
+          Adicionar ao carrinho
+
         </button>
         <Link
           to={ `/ProductDetails/${id}` }
