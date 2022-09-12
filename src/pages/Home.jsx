@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import Categories from '../components/Categories';
 import Product from '../components/Product';
 import { getProductById, getProductsFromCategoryAndQuery } from '../services/api';
@@ -58,9 +57,8 @@ class Home extends React.Component {
           data-testid="shopping-cart-button"
           to="/cart"
         >
-          Enter
+          Carrinho
         </Link>
-
         <div>
           <input
             data-testid="query-input"
@@ -83,6 +81,7 @@ class Home extends React.Component {
                 name={ item.title }
                 price={ item.price }
                 image={ item.thumbnail }
+                id={ item.id }
               />
             ))
             : <p>Nenhum produto foi encontrado</p>
