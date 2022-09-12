@@ -1,39 +1,96 @@
 import React, { Component } from 'react';
-import Master from './Master';
+import CartItem from './CartItem';
 
 class RenderCard extends Component {
   state = {
-    storageValues: [],
-    contador: 0,
+    cartItems: [],
+    count: 0,
   };
 
   componentDidMount() {
-    const favorite = JSON.parse(localStorage.getItem('products')) || [];
-    const array = favorite.map((itens) => itens);
-    const count = array.length;
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const count = products.length;
     this.setState({
-      storageValues: array,
-      contador: count,
+      cartItems: products,
+      count,
     });
   }
 
+  increaseQuantity = (name) => {
+    const { cartItems } = this.state;
+
+    const products = cartItems.map((cartItem) => {
+      if (cartItem.name !== name) {
+        return cartItem;
+      }
+
+      return {
+        ...cartItem,
+        quantity: cartItem.quantity + 1,
+      };
+    });
+
+    localStorage.setItem('products', JSON.stringify(products));
+
+    this.setState({
+      cartItems: products,
+    });
+  };
+
+  decreaseQuantity = (name) => {
+    const { cartItems } = this.state;
+
+    const products = cartItems.map((cartItem) => {
+      if (cartItem.name !== name || cartItem.quantity === 1) {
+        return cartItem;
+      }
+
+      return {
+        ...cartItem,
+        quantity: cartItem.quantity - 1,
+      };
+    });
+
+    localStorage.setItem('products', JSON.stringify(products));
+
+    this.setState({
+      cartItems: products,
+    });
+  };
+
+  removeItem = (name) => {
+    this.setState((prevState) => {
+      const { cartItems } = prevState;
+      const filteredItems = cartItems.filter((item) => item.name !== name);
+
+      localStorage.setItem('products', JSON.stringify(filteredItems));
+
+      return {
+        cartItems: filteredItems,
+        count: filteredItems.length,
+      };
+    });
+  };
+
   render() {
-    const { storageValues, contador } = this.state;
+    const { cartItems, count } = this.state;
     return (
       <div>
-        {contador !== 0 ? (
+        {count !== 0 ? (
           <div>
-            <p
-              data-testid="shopping-cart-product-quantity"
-            >
-              {`quantidade de Produtos: ${contador}`}
+            <p>
+              {`quantidade de Produtos: ${count}`}
             </p>
-            {storageValues.map((itens, pos) => (
-              <Master
-                key={ pos }
-                Nome={ itens.nomes }
-                Imagen={ itens.imagens }
-                Preco={ itens.presos }
+            {cartItems.map((item) => (
+              <CartItem
+                key={ item.name }
+                name={ item.name }
+                image={ item.image }
+                price={ item.price }
+                increaseQuantity={ this.increaseQuantity }
+                decreaseQuantity={ this.decreaseQuantity }
+                removeItem={ this.removeItem }
+                quantity={ item.quantity }
               />
             ))}
           </div>
