@@ -36,6 +36,10 @@ export default class Product extends Component {
           onClick={ this.setProductsStorage }
         >
           Adicionar ao carrinho
+<<<<<<< HEAD
+=======
+
+>>>>>>> 07087bd2404405c4b8746b7b226a0a72ada27df4
         </button>
         <Link
           to={ `/ProductDetails/${id}` }
