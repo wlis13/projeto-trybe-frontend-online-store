@@ -1,3 +1,10 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable comma-dangle */
+/* eslint-disable sonarjs/no-duplicate-string */
+/* eslint-disable max-len */
+/* eslint-disable quotes */
+/* eslint-disable import/order */
 import React from 'react';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
@@ -23,6 +30,7 @@ describe(`12 - Finalize a compra vendo um resumo dela, preenchendo os seus dados
     expect(await screen.findAllByTestId('shopping-cart-product-name'));
 
     expect(
+      // eslint-disable-next-line comma-dangle
       (await screen.findAllByTestId('shopping-cart-product-name'))[0]
     ).toHaveTextContent(mockedQueryResult.results[0].title);
     expect(

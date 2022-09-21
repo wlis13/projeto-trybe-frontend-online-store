@@ -1,0 +1,16 @@
+it('exercicío 3', () => {
+ render(<App/>)
+const linkDetails = await screen.findAllByRole("link",{ name:"ver detalhes"}, {timeout: 2000})
+
+expect(linkDetails[0]).toBeDefined();
+userEvent.click(linkDetails[0]);
+const year = await screen.findByText(/Release Year: 2009/i);
+expect(year).toByInTheDocument();
+
+});
+
+import {createMemoryHistory} from 'history';
+
+act(() => {
+history.push(/xablau)
+});

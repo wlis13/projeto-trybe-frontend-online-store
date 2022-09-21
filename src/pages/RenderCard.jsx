@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 
 class RenderCard extends Component {
@@ -99,6 +100,7 @@ class RenderCard extends Component {
             Seu carrinho está vazio
           </p>
         )}
+        <Link to="/checkout" data-testid="checkout-products">confirmar compra</Link>
       </div>
     );
   }
